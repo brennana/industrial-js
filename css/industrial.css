@@ -1,0 +1,797 @@
+/*********************************************************************************
+ *	Industrial.js -- A JavaScript-driven library of CSS3 gauges, tanks, and more.
+ *	Copyright (c) 2013 Andy J. Brennan
+ *
+ *	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ *	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+ *	WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+ *	PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ *	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ *	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+ *	OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+ *	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ ********************************************************************************/
+
+/* Set up LED display (TELEINDICADORES 1) font */
+@font-face {
+	font-family: 'LEDDisplay';
+	src: url('../fonts/LEDDisplay.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.industrial.preloader {
+	font-family: 'LEDDisplay';
+	font-size: 1px;
+}
+
+/* Base Industrial Class */
+.industrial {
+	background: rgb(240,240,240);
+	overflow: hidden;
+}
+
+/* Space div that counters the meter */
+.industrial > .space {
+	width: 100%;
+	height: 80%;
+	-webkit-transition: 2s height;
+	-moz-transition: 2s height;
+	-o-transition: 2s height;
+	-ms-transition: 2s height;
+	transition: 2s height;
+}
+
+.industrial > .meter {
+	height: 100%;
+	width: 100%;
+	background: -webkit-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75));
+	background: -moz-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75));
+	background: -o-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75));
+	background: -ms-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75));
+	background: linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75));
+}
+
+.industrial > .ticks {
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+
+.ticks > .tick {
+	width: 100%;
+	height: 3%;
+	background: black;
+	margin-bottom: 300%;
+}
+
+.tick > .scale {
+	font-family: sans-serif;
+	font-size: 10pt;
+	color: black;
+	position: relative;
+	z-index: 2;
+}
+
+/* Industrial Tank */
+.industrial.tank {
+	height: 100px;
+	width: 90px;
+	box-shadow: 0 0 1em inset;
+	border-radius: 0.5em;
+	padding-top: .5%;
+	padding-bottom: .5%;
+}
+
+
+/* Industrial Thermometer */
+.industrial.thermometer {
+	height: 100px;
+	width: 20px;
+	box-shadow: 0 0 0.7em inset;
+	border-radius: 10em;
+	padding-top: .7%;
+	padding-bottom: .7%;
+}
+
+.industrial.thermometer > .ticks {
+	width: 35%;
+}
+
+.industrial.tank .tick > .scale,
+.industrial.thermometer .tick > .scale {
+	top: -200%;
+	left: 140%;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.industrial.tank .tick:first-child > .scale,
+.industrial.thermometer .tick:first-child  > .scale{
+	top: -50%;
+}
+
+.industrial.tank .tick:last-child > .scale,
+.industrial.thermometer .tick:last-child  > .scale{
+	top: -380%;
+}
+
+.industrial.tank > .meter,
+.industrial.thermometer > .meter {
+	border-radius: 0;
+	height: 200%;
+}
+
+
+/* Industrial Gauge */
+.industrial.gauge {
+	height: 90px;
+	width: 150px;
+	border-top-right-radius: 100em;
+	border-top-left-radius: 100em;
+	border-bottom-left-radius: 20em;
+	border-bottom-right-radius: 20em;
+	box-shadow: 0 0 0.5em inset;
+}
+
+.industrial.gauge > .meter {
+	width: 2.5%;
+	height: 90%;
+	background: -webkit-linear-gradient(left, rgba(255, 18, 18, 0.75), rgba(211, 19, 19, .75));
+	background: -moz-linear-gradient(left, rgba(255, 18, 18, 0.75), rgba(211, 19, 19, .75));
+	background: -o-linear-gradient(left, rgba(255, 18, 18, 0.75), rgba(211, 19, 19, .75));
+	background: -ms-linear-gradient(left, rgba(255, 18, 18, 0.75), rgba(211, 19, 19, .75));
+	background: linear-gradient(left, rgba(255, 18, 18, 0.75), rgba(211, 19, 19, .75));
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 100%;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+	-webkit-transform: rotate(-30deg);
+	-moz-transform: rotate(-30deg);
+	-o-transform: rotate(-30deg);
+	-ms-transform: rotate(-30deg);
+	transform: rotate(-30deg);
+	-webkit-transition: 1s -webkit-transform;
+	-moz-transition: 1s -moz-transform;
+	-o-transition: 1s -o-transform;
+	-ms-transition: 1s -ms-transform;
+	transition: 1s transform;
+}
+
+.industrial.gauge > .space {
+	height: 12%;
+}
+
+.industrial.gauge > .ticks {
+	width: 100%;
+	height: 100%;
+}
+
+.industrial.gauge .ticks > .tick {
+	width: 2.5%;
+	height: 100%;
+	background: -webkit-linear-gradient(top, black 20%, rgba(0, 0, 0, 0) 20%);
+	background: -moz-linear-gradient(top, black 20%, rgba(0, 0, 0, 0) 20%);
+	background: -o-linear-gradient(top, black 20%, rgba(0, 0, 0, 0) 20%);
+	background: -ms-linear-gradient(top, black 20%, rgba(0, 0, 0, 0) 20%);
+	background: linear-gradient(top, black 20%, rgba(0, 0, 0, 0) 20%);
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+	position: relative;
+	top: 0;
+	-webkit-transform-origin: bottom;
+	-moz-transform-origin: bottom;
+	-o-transform-origin: bottom;
+	-ms-transform-origin: bottom;
+	transform-origin: bottom;
+}
+
+.industrial.gauge .tick:first-child {
+	opacity: 0;
+}
+
+.industrial.gauge .tick:last-child {
+	opacity: 1;
+}
+
+.industrial.gauge .tick > .scale {
+	top: 20%;
+	left: 0%;
+	font-size: 7pt;
+}
+
+
+/* Industrial LED */
+.industrial.led {
+	width: 25px;
+	height: 25px;
+	border-radius: 10em;
+	overflow: visible;
+}
+
+.industrial.led > .meter {
+	border-radius: 10em;
+}
+
+
+/* Industrial Readout */
+.industrial.readout {
+	width: 152px;
+	height: 50px;
+	border-radius: 0.5em;
+	background: rgb(40,40,40);
+	box-shadow: 0 0 0.5em inset;
+	padding-top: 1em;
+}
+
+.industrial.readout > .meter {
+	font-size: 60pt;
+	font-family: 'LEDDisplay', monospace;
+	background: none;
+	color: rgb(27, 228, 0);
+	text-align: right;
+}
+
+.industrial.readout .meter > .digit{
+	text-shadow: rgb(27,228,0) 0 0 .04em;
+	vertical-align: top;
+	line-height: .5;
+}
+
+/* Extra colour overrides */
+.danger {
+	background: -webkit-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -o-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+}
+
+.primary {
+	background: -webkit-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75)) !important;
+	background: -moz-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75)) !important;
+	background: -o-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75)) !important;
+	background: -ms-linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75)) !important;
+	background: linear-gradient(left, rgba(95, 100, 221, 0.75), rgba(76, 69, 233,.75)) !important;
+}
+
+.warning {
+	background: -webkit-linear-gradient(left, rgba(255, 244, 0, 0.75), rgba(245, 216, 6, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(255, 244, 0, 0.75), rgba(245, 216, 6, .75)) !important;
+	background: -o-linear-gradient(left, rgba(255, 244, 0, 0.75), rgba(245, 216, 6, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(255, 244, 0, 0.75), rgba(245, 216, 6, .75)) !important;
+	background: linear-gradient(left, rgba(255, 244, 0, 0.75), rgba(245, 216, 6, .75)) !important;
+}
+
+.safe {
+	background: -webkit-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -o-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+}
+
+.unimportant {
+	background: -webkit-linear-gradient(left, rgba(122, 122, 122, 0.75), rgba(85, 85, 85, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(122, 122, 122, 0.75), rgba(85, 85, 85, .75)) !important;
+	background: -o-linear-gradient(left, rgba(122, 122, 122, 0.75), rgba(85, 85, 85, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(122, 122, 122, 0.75), rgba(85, 85, 85, .75)) !important;
+	background: linear-gradient(left, rgba(122, 122, 122, 0.75), rgba(85, 85, 85, .75)) !important;
+}
+
+
+/* LED-specific colour overrides */
+.industrial.led .meter.green {
+	background: -webkit-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -o-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	background: linear-gradient(left, rgba(9, 214, 0, 0.75), rgba(6, 160, 0, .75)) !important;
+	box-shadow: 0 0 1em .05em rgb(10, 255, 0), 0 0 .1em rgb(0, 0, 0) inset;
+}
+.industrial.led .meter.green.on {
+	/* Alias for .green */
+}
+
+.industrial.led .meter.red {
+	background: -webkit-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -moz-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -o-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: -ms-linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	background: linear-gradient(left, rgba(253, 38, 73, 0.75), rgba(216, 29, 29, .75)) !important;
+	box-shadow: 0 0 1em .05em rgb(255, 0, 0), 0 0 .1em rgb(0, 0, 0) inset;
+}
+.industrial.led .meter.red.on {
+	/* Alias for .red */
+}
+
+.industrial.led .meter.blue {
+	background: -webkit-linear-gradient(left, rgba(65, 177, 255, 0.75), rgb(0, 133, 255)) !important;
+	background: -moz-linear-gradient(left, rgba(65, 177, 255, 0.75), rgb(0, 133, 255)) !important;
+	background: -o-linear-gradient(left, rgba(65, 177, 255, 0.75), rgb(0, 133, 255)) !important;
+	background: -ms-linear-gradient(left, rgba(65, 177, 255, 0.75), rgb(0, 133, 255)) !important;
+	background: linear-gradient(left, rgba(65, 177, 255, 0.75), rgb(0, 133, 255)) !important;
+	box-shadow: 0 0 1em .05em rgb(0, 154, 255), 0 0 .1em rgb(0, 0, 0) inset;
+}
+.industrial.led .meter.blue.on {
+	/* Alias for .blue */
+}
+
+.industrial.led .meter.off {
+	background: rgb(184,184,184) !important;
+	box-shadow: 0 0 .1em rgb(0, 0, 0) inset !important;
+}
+
+
+/* Readout colour overrides */
+.industrial.readout > .meter.green {
+	color: rgb(27, 228, 0) !important;
+}
+.industrial.readout .meter.green > .digit {
+	text-shadow: rgb(27,228,0) 0 0 .04em !important;
+}
+
+.industrial.readout > .meter.blue {
+	color: rgb(44, 187, 255) !important;
+}
+.industrial.readout .meter.blue > .digit {
+	text-shadow: rgb(44, 187, 255) 0 0 .04em !important;
+}
+
+.industrial.readout > .meter.red {
+	color: rgb(255, 37, 37) !important;
+}
+.industrial.readout .meter.red > .digit {
+	text-shadow: rgb(255, 37, 37) 0 0 .04em !important;
+}
+
+.industrial.readout > .meter.white {
+	color: rgb(255, 255, 255) !important;
+}
+.industrial.readout .meter.white > .digit {
+	text-shadow: rgb(255, 255, 255) 0 0 .04em !important;
+}
+
+
+/* Optional Sizing Classes */
+.industrial.tank.size.one {
+	height: -webkit-calc(100px * 1);
+	height: -moz-calc(100px * 1);
+	height: -o-calc(100px * 1);
+	height: -ms-calc(100px * 1);
+	height: calc(100px * 1);
+	width: -webkit-calc(90px * 1);
+	width: -moz-calc(90px * 1);
+	width: -o-calc(90px * 1);
+	width: -ms-calc(90px * 1);
+	width: calc(90px * 1);
+	padding-top: -webkit-calc(.5% * 1);
+	padding-top: -moz-calc(.5% * 1);
+	padding-top: -o-calc(.5% * 1);
+	padding-top: -ms-calc(.5% * 1);
+	padding-top: calc(.5% * 1);
+	padding-bottom: -webkit-calc(.5% * 1);
+	padding-bottom: -moz-calc(.5% * 1);
+	padding-bottom: -o-calc(.5% * 1);
+	padding-bottom: -ms-calc(.5% * 1);
+	padding-bottom: calc(.5% * 1);
+}
+
+.industrial.tank.size.two {
+	height: -webkit-calc(100px * 2);
+	height: -moz-calc(100px * 2);
+	height: -o-calc(100px * 2);
+	height: -ms-calc(100px * 2);
+	height: calc(100px * 2);
+	width: -webkit-calc(90px * 2);
+	width: -moz-calc(90px * 2);
+	width: -o-calc(90px * 2);
+	width: -ms-calc(90px * 2);
+	width: calc(90px * 2);
+	padding-top: -webkit-calc(.5% * 2);
+	padding-top: -moz-calc(.5% * 2);
+	padding-top: -o-calc(.5% * 2);
+	padding-top: -ms-calc(.5% * 2);
+	padding-top: calc(.5% * 2);
+	padding-bottom: -webkit-calc(.5% * 2);
+	padding-bottom: -moz-calc(.5% * 2);
+	padding-bottom: -o-calc(.5% * 2);
+	padding-bottom: -ms-calc(.5% * 2);
+	padding-bottom: calc(.5% * 2);
+}
+
+.industrial.tank.size.three {
+	height: -webkit-calc(100px * 3);
+	height: -moz-calc(100px * 3);
+	height: -o-calc(100px * 3);
+	height: -ms-calc(100px * 3);
+	height: calc(100px * 3);
+	width: -webkit-calc(90px * 3);
+	width: -moz-calc(90px * 3);
+	width: -o-calc(90px * 3);
+	width: -ms-calc(90px * 3);
+	width: calc(90px * 3);
+	padding-top: -webkit-calc(.5% * 3);
+	padding-top: -moz-calc(.5% * 3);
+	padding-top: -o-calc(.5% * 3);
+	padding-top: -ms-calc(.5% * 3);
+	padding-top: calc(.5% * 3);
+	padding-bottom: -webkit-calc(.5% * 3);
+	padding-bottom: -moz-calc(.5% * 3);
+	padding-bottom: -o-calc(.5% * 3);
+	padding-bottom: -ms-calc(.5% * 3);
+	padding-bottom: calc(.5% * 3);
+}
+
+.industrial.tank.size.four {
+	height: -webkit-calc(100px * 4);
+	height: -moz-calc(100px * 4);
+	height: -o-calc(100px * 4);
+	height: -ms-calc(100px * 4);
+	height: calc(100px * 4);
+	width: -webkit-calc(90px * 4);
+	width: -moz-calc(90px * 4);
+	width: -o-calc(90px * 4);
+	width: -ms-calc(90px * 4);
+	width: calc(90px * 4);
+	padding-top: -webkit-calc(.5% * 4);
+	padding-top: -moz-calc(.5% * 4);
+	padding-top: -o-calc(.5% * 4);
+	padding-top: -ms-calc(.5% * 4);
+	padding-top: calc(.5% * 4);
+	padding-bottom: -webkit-calc(.5% * 4);
+	padding-bottom: -moz-calc(.5% * 4);
+	padding-bottom: -o-calc(.5% * 4);
+	padding-bottom: -ms-calc(.5% * 4);
+	padding-bottom: calc(.5% * 4);
+}
+
+.industrial.thermometer.size.one {
+	height: -webkit-calc(100px * 1);
+	height: -moz-calc(100px * 1);
+	height: -o-calc(100px * 1);
+	height: -ms-calc(100px * 1);
+	height: calc(100px * 1);
+	width: -webkit-calc(20px * 1);
+	width: -moz-calc(20px * 1);
+	width: -o-calc(20px * 1);
+	width: -ms-calc(20px * 1);
+	width: calc(20px * 1);
+	padding-top: -webkit-calc(.7% * 1);
+	padding-top: -moz-calc(.7% * 1);
+	padding-top: -o-calc(.7% * 1);
+	padding-top: -ms-calc(.7% * 1);
+	padding-top: calc(.7% * 1);
+	padding-bottom: -webkit-calc(.7% * 1);
+	padding-bottom: -moz-calc(.7% * 1);
+	padding-bottom: -o-calc(.7% * 1);
+	padding-bottom: -ms-calc(.7% * 1);
+	padding-bottom: calc(.7% * 1);
+}
+
+.industrial.thermometer.size.two {
+	height: -webkit-calc(100px * 2);
+	height: -moz-calc(100px * 2);
+	height: -o-calc(100px * 2);
+	height: -ms-calc(100px * 2);
+	height: calc(100px * 2);
+	width: -webkit-calc(20px * 2);
+	width: -moz-calc(20px * 2);
+	width: -o-calc(20px * 2);
+	width: -ms-calc(20px * 2);
+	width: calc(20px * 2);
+	padding-top: -webkit-calc(.7% * 2);
+	padding-top: -moz-calc(.7% * 2);
+	padding-top: -o-calc(.7% * 2);
+	padding-top: -ms-calc(.7% * 2);
+	padding-top: calc(.7% * 2);
+	padding-bottom: -webkit-calc(.7% * 2);
+	padding-bottom: -moz-calc(.7% * 2);
+	padding-bottom: -o-calc(.7% * 2);
+	padding-bottom: -ms-calc(.7% * 2);
+	padding-bottom: calc(.7% * 2);
+}
+
+.industrial.thermometer.size.three {
+	height: -webkit-calc(100px * 3);
+	height: -moz-calc(100px * 3);
+	height: -o-calc(100px * 3);
+	height: -ms-calc(100px * 3);
+	height: calc(100px * 3);
+	width: -webkit-calc(20px * 3);
+	width: -moz-calc(20px * 3);
+	width: -o-calc(20px * 3);
+	width: -ms-calc(20px * 3);
+	width: calc(20px * 3);
+	padding-top: -webkit-calc(.7% * 3);
+	padding-top: -moz-calc(.7% * 3);
+	padding-top: -o-calc(.7% * 3);
+	padding-top: -ms-calc(.7% * 3);
+	padding-top: calc(.7% * 3);
+	padding-bottom: -webkit-calc(.7% * 3);
+	padding-bottom: -moz-calc(.7% * 3);
+	padding-bottom: -o-calc(.7% * 3);
+	padding-bottom: -ms-calc(.7% * 3);
+	padding-bottom: calc(.7% * 3);
+}
+
+.industrial.thermometer.size.four {
+	height: -webkit-calc(100px * 4);
+	height: -moz-calc(100px * 4);
+	height: -o-calc(100px * 4);
+	height: -ms-calc(100px * 4);
+	height: calc(100px * 4);
+	width: -webkit-calc(20px * 4);
+	width: -moz-calc(20px * 4);
+	width: -o-calc(20px * 4);
+	width: -ms-calc(20px * 4);
+	width: calc(20px * 4);
+	padding-top: -webkit-calc(.7% * 4);
+	padding-top: -moz-calc(.7% * 4);
+	padding-top: -o-calc(.7% * 4);
+	padding-top: -ms-calc(.7% * 4);
+	padding-top: calc(.7% * 4);
+	padding-bottom: -webkit-calc(.7% * 4);
+	padding-bottom: -moz-calc(.7% * 4);
+	padding-bottom: -o-calc(.7% * 4);
+	padding-bottom: -ms-calc(.7% * 4);
+	padding-bottom: calc(.7% * 4);
+}
+
+.industrial.tank.size.one .tick > .scale,
+.industrial.thermometer.size.one .tick > .scale {
+	font-size: -webkit-calc(10pt * 1);
+	font-size: -moz-calc(10pt * 1);
+	font-size: -o-calc(10pt * 1);
+	font-size: -ms-calc(10pt * 1);
+	font-size: calc(10pt * 1);
+}
+
+.industrial.tank.size.two .tick > .scale,
+.industrial.thermometer.size.two .tick > .scale {
+	font-size: -webkit-calc(10pt * 2);
+	font-size: -moz-calc(10pt * 2);
+	font-size: -o-calc(10pt * 2);
+	font-size: -ms-calc(10pt * 2);
+	font-size: calc(10pt * 2);
+}
+
+.industrial.tank.size.three .tick > .scale,
+.industrial.thermometer.size.three .tick > .scale {
+	font-size: -webkit-calc(10pt * 3);
+	font-size: -moz-calc(10pt * 3);
+	font-size: -o-calc(10pt * 3);
+	font-size: -ms-calc(10pt * 3);
+	font-size: calc(10pt * 3);
+}
+
+.industrial.tank.size.four .tick > .scale,
+.industrial.thermometer.size.four .tick > .scale {
+	font-size: -webkit-calc(10pt * 4);
+	font-size: -moz-calc(10pt * 4);
+	font-size: -o-calc(10pt * 4);
+	font-size: -ms-calc(10pt * 4);
+	font-size: calc(10pt * 4);
+}
+
+.industrial.led.size.one {
+	height: -webkit-calc(25px * 1);
+	height: -moz-calc(25px * 1);
+	height: -o-calc(25px * 1);
+	height: -ms-calc(25px * 1);
+	height: calc(25px * 1);
+	width: -webkit-calc(25px * 1);
+	width: -moz-calc(25px * 1);
+	width: -o-calc(25px * 1);
+	width: -ms-calc(25px * 1);
+	width: calc(25px * 1);
+}
+
+.industrial.led.size.two {
+	height: -webkit-calc(25px * 2);
+	height: -moz-calc(25px * 2);
+	height: -o-calc(25px * 2);
+	height: -ms-calc(25px * 2);
+	height: calc(25px * 2);
+	width: -webkit-calc(25px * 2);
+	width: -moz-calc(25px * 2);
+	width: -o-calc(25px * 2);
+	width: -ms-calc(25px * 2);
+	width: calc(25px * 2);
+}
+
+.industrial.led.size.three {
+	height: -webkit-calc(25px * 3);
+	height: -moz-calc(25px * 3);
+	height: -o-calc(25px * 3);
+	height: -ms-calc(25px * 3);
+	height: calc(25px * 3);
+	width: -webkit-calc(25px * 3);
+	width: -moz-calc(25px * 3);
+	width: -o-calc(25px * 3);
+	width: -ms-calc(25px * 3);
+	width: calc(25px * 3);
+}
+
+.industrial.led.size.four {
+	height: -webkit-calc(25px * 4);
+	height: -moz-calc(25px * 4);
+	height: -o-calc(25px * 4);
+	height: -ms-calc(25px * 4);
+	height: calc(25px * 4);
+	width: -webkit-calc(25px * 4);
+	width: -moz-calc(25px * 4);
+	width: -o-calc(25px * 4);
+	width: -ms-calc(25px * 4);
+	width: calc(25px * 4);
+}
+
+.industrial.gauge.size.one {
+	height: -webkit-calc(90px * 1);
+	height: -moz-calc(90px * 1);
+	height: -o-calc(90px * 1);
+	height: -ms-calc(90px * 1);
+	height: calc(90px * 1);
+	width: -webkit-calc(150px * 1);
+	width: -moz-calc(150px * 1);
+	width: -o-calc(150px * 1);
+	width: -ms-calc(150px * 1);
+	width: calc(150px * 1);
+}
+
+.industrial.gauge.size.two {
+	height: -webkit-calc(90px * 2);
+	height: -moz-calc(90px * 2);
+	height: -o-calc(90px * 2);
+	height: -ms-calc(90px * 2);
+	height: calc(90px * 2);
+	width: -webkit-calc(150px * 2);
+	width: -moz-calc(150px * 2);
+	width: -o-calc(150px * 2);
+	width: -ms-calc(150px * 2);
+	width: calc(150px * 2);
+}
+
+.industrial.gauge.size.three {
+	height: -webkit-calc(90px * 3);
+	height: -moz-calc(90px * 3);
+	height: -o-calc(90px * 3);
+	height: -ms-calc(90px * 3);
+	height: calc(90px * 3);
+	width: -webkit-calc(150px * 3);
+	width: -moz-calc(150px * 3);
+	width: -o-calc(150px * 3);
+	width: -ms-calc(150px * 3);
+	width: calc(150px * 3);
+}
+
+.industrial.gauge.size.four {
+	height: -webkit-calc(90px * 4);
+	height: -moz-calc(90px * 4);
+	height: -o-calc(90px * 4);
+	height: -ms-calc(90px * 4);
+	height: calc(90px * 4);
+	width: -webkit-calc(150px * 4);
+	width: -moz-calc(150px * 4);
+	width: -o-calc(150px * 4);
+	width: -ms-calc(150px * 4);
+	width: calc(150px * 4);
+}
+
+.industrial.gauge.size.one .tick > .scale {
+	font-size: -webkit-calc(7pt * 1);
+	font-size: -moz-calc(7pt * 1);
+	font-size: -o-calc(7pt * 1);
+	font-size: -ms-calc(7pt * 1);
+	font-size: calc(7pt * 1);
+}
+
+.industrial.gauge.size.two .tick > .scale {
+	font-size: -webkit-calc(7pt * 2);
+	font-size: -moz-calc(7pt * 2);
+	font-size: -o-calc(7pt * 2);
+	font-size: -ms-calc(7pt * 2);
+	font-size: calc(7pt * 2);
+}
+
+.industrial.gauge.size.three .tick > .scale {
+	font-size: -webkit-calc(7pt * 3);
+	font-size: -moz-calc(7pt * 3);
+	font-size: -o-calc(7pt * 3);
+	font-size: -ms-calc(7pt * 3);
+	font-size: calc(7pt * 3);
+}
+
+.industrial.gauge.size.four .tick > .scale {
+	font-size: -webkit-calc(7pt * 4);
+	font-size: -moz-calc(7pt * 4);
+	font-size: -o-calc(7pt * 4);
+	font-size: -ms-calc(7pt * 4);
+	font-size: calc(7pt * 4);
+}
+
+.industrial.readout.size.one {
+	height: -webkit-calc(50px * 1);
+	height: -moz-calc(50px * 1);
+	height: -o-calc(50px * 1);
+	height: -ms-calc(50px * 1);
+	height: calc(50px * 1);
+	width: -webkit-calc(38px * 1);
+	width: -moz-calc(38px * 1);
+	width: -o-calc(38px * 1);
+	width: -ms-calc(38px * 1);
+	width: calc(38px * 1);
+}
+
+.industrial.readout.size.two {
+	height: -webkit-calc(50px * 2);
+	height: -moz-calc(50px * 2);
+	height: -o-calc(50px * 2);
+	height: -ms-calc(50px * 2);
+	height: calc(50px * 2);
+	width: -webkit-calc(38px * 2);
+	width: -moz-calc(38px * 2);
+	width: -o-calc(38px * 2);
+	width: -ms-calc(38px * 2);
+	width: calc(38px * 2);
+}
+
+.industrial.readout.size.three {
+	height: -webkit-calc(50px * 3);
+	height: -moz-calc(50px * 3);
+	height: -o-calc(50px * 3);
+	height: -ms-calc(50px * 3);
+	height: calc(50px * 3);
+	width: -webkit-calc(38px * 3);
+	width: -moz-calc(38px * 3);
+	width: -o-calc(38px * 3);
+	width: -ms-calc(38px * 3);
+	width: calc(38px * 3);
+}
+
+.industrial.readout.size.four {
+	height: -webkit-calc(50px * 4);
+	height: -moz-calc(50px * 4);
+	height: -o-calc(50px * 4);
+	height: -ms-calc(50px * 4);
+	height: calc(50px * 4);
+	width: -webkit-calc(38px * 4);
+	width: -moz-calc(38px * 4);
+	width: -o-calc(38px * 4);
+	width: -ms-calc(38px * 4);
+	width: calc(38px * 4);
+}
+
+.industrial.readout.size.one > .meter {
+	font-size: -webkit-calc(60pt * 1);
+	font-size: -moz-calc(60pt * 1);
+	font-size: -o-calc(60pt * 1);
+	font-size: -ms-calc(60pt * 1);
+	font-size: calc(60pt * 1);
+}
+.industrial.readout.size.two > .meter {
+	font-size: -webkit-calc(60pt * 2);
+	font-size: -moz-calc(60pt * 2);
+	font-size: -o-calc(60pt * 2);
+	font-size: -ms-calc(60pt * 2);
+	font-size: calc(60pt * 2);
+}
+.industrial.readout.size.three > .meter {
+	font-size: -webkit-calc(60pt * 3);
+	font-size: -moz-calc(60pt * 3);
+	font-size: -o-calc(60pt * 3);
+	font-size: -ms-calc(60pt * 3);
+	font-size: calc(60pt * 3);
+}
+.industrial.readout.size.four > .meter {
+	font-size: -webkit-calc(60pt * 4);
+	font-size: -moz-calc(60pt * 4);
+	font-size: -o-calc(60pt * 4);
+	font-size: -ms-calc(60pt * 4);
+	font-size: calc(60pt * 4);
+}
