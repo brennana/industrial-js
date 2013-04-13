@@ -16,6 +16,7 @@ If you answer yes to any of these, **Industrial.js** is for you! This library al
 With optional sizing and color classes, tick marks, and scales, your industrial application will come to life, allowing your users to gleam the same information, but with far more efficiency and style. Not to mention that this toolkit is MIT licensed (i.e. it's free!).
 
 [Go ahead, give the example a try!](http://valdez42.github.com/industrial-js)
+
 [Also view the documentation.](https://github.com/valdez42/industrial-js/wiki)
 
 ## Contributing ##
