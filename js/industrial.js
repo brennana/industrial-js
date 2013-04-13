@@ -238,7 +238,7 @@ var __hasProp = {}.hasOwnProperty,
     function ReadoutController(element, options) {
       var $meter, digitAmt, generateDigits, i, width, _i, _ref, _ref1;
       ReadoutController.__super__.constructor.apply(this, arguments);
-      this.digit_amt = this.options.digit_amt;
+      this.digit_amount = this.options.digit_amount;
       $meter = this.$element.children(".meter");
       if ($meter.length <= 0) {
         return;
@@ -246,8 +246,8 @@ var __hasProp = {}.hasOwnProperty,
       generateDigits = true;
       if ($meter.children(".digit").length > 0) {
         generateDigits = false;
-      } else if ((_ref = this.digit_amt) !== (void 0) && _ref !== 0 && _ref !== 1) {
-        digitAmt = this.digit_amt;
+      } else if ((_ref = this.digit_amount) !== (void 0) && _ref !== 0 && _ref !== 1) {
+        digitAmt = this.digit_amount;
       } else if ((_ref1 = $meter.data('digits')) !== (void 0) && _ref1 !== 0 && _ref1 !== 1) {
         digitAmt = $meter.data('digits');
       } else {
