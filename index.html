@@ -1,66 +1,194 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Industrial-js by Valdez42</title>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Industrial.js</title>
+        <meta name="description" content="Industrial.js -- A JavaScript-driven library of CSS3 gauges, tanks, and more.">
+        <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Industrial-js</h1>
-        <p>A jQuery-driven library of CSS3 gauges, tanks, and more.</p>
+       	<style>
+            h1.huge {
+                font-size: 72pt;
+            }
+            .content-centered {
+                text-align: center;
+            }
+        </style>
+        <link rel="stylesheet" href="css/industrial.css">
+        <link rel="stylesheet" href="css/introjs.min.css">
+        <link rel="stylesheet" href="css/foundation.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="row">
+            <div class="small-12 large-12 columns">
+                <div class="row">
+                    <div class="large-12 small-12 columns">
+                        <h1 class="huge content-centered" data-intro="Hello and welcome to Industrial.js, a jQuery-driven library of CSS3 gauges, tanks, and more!">Industrial.js</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 large-3 columns" data-intro="This is a tank! She represents levels and supports various color overrides." data-step="2">
+                        <h2>Water Level 1</h2>
+                        <div class="industrial tank size two" >
+                            <span class="ticks" data-amount="4" data-scale-freq="1"></span>
+                            <div class="space"></div>
+                        	<div class="meter"></div>
+                        </div>
+                    </div>
+                    <div class="small-12 large-6 columns content-centered">
+                        <br />
+                        <div class="row">
+                            <button id="start_intro" class="button round">Show Me the Ropes</button>
+                        </div>
+                        <div class="row">
+                            <a href="https://github.com/valdez42/industrial-js" class="button round">See on Github</a>
+                        </div>
+                        <div class="row">
+                            <a href="https://github.com/valdez42/industrial-js" class="button round">Download</a>
+                        </div>
+                    </div>
+                    <div class="small-12 large-3 columns">
+                        <h2>Water Level 2</h2>
+                        <div class="industrial tank size two">
+                            <span class="ticks" data-amount="4" data-scale-freq="1"></span>
+                            <div class="space"></div>
+                            <div class="meter safe"></div>
+                        </div>
+                    </div>
+                </div>
 
-        <p class="view"><a href="https://github.com/Valdez42/industrial-js">View the Project on GitHub <small>Valdez42/industrial-js</small></a></p>
 
+                <div class="row" data-intro="These are thermometers. They are just like tanks, only thinner." data-step="3">
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 1</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter"></div>
+                        </div>
+                    </div>
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 2</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter safe"></div>
+                        </div>
+                    </div>
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 3</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter warning"></div>
+                        </div>
+                    </div>
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 4</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter danger"></div>
+                        </div>
+                    </div>
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 5</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter unimportant"></div>
+                        </div>
+                    </div>
+                    <div class="small-4 large-2 columns">
+                        <h5>Temperature 6</h5>
+                        <div class="industrial thermometer size one">
+                            <span class="ticks" data-amount="10"></span>
+                            <div class="space"></div>
+                            <div class="meter"></div>
+                        </div>
+                    </div>
+                </div>
 
-        <ul>
-          <li><a href="https://github.com/Valdez42/industrial-js/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Valdez42/industrial-js/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Valdez42/industrial-js">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>Welcome to GitHub Pages.</h3>
+                <div class="row" data-intro="These are LEDs, great for boolean values. As you can see, they have multiple colors!" data-step="4">
+                    <div class="small-3 large-2 columns">
+                        <h5>LED 1</h5>
+                        <div class="industrial led size two">
+                            <div class="meter green"></div>
+                        </div>
+                    </div>
+                    <div class="small-3 large-2 columns">
+                        <h5>LED 2</h5>
+                        <div class="industrial led size two">
+                            <div class="meter red"></div>
+                        </div>
+                    </div>
+                    <div class="small-3 large-2 columns">
+                        <h5>LED 3</h5>
+                        <div class="industrial led size two">
+                            <div class="meter blue"></div>
+                        </div>
+                    </div>
+                    <div class="small-3 large-2 columns">
+                        <h5>LED 4</h5>
+                        <div class="industrial led size two">
+                            <div class="meter red"></div>
+                        </div>
+                    </div>
+                    <div class="small-3 large-2 columns">
+                        <h5>LED 5</h5>
+                        <div class="industrial led size two">
+                            <div class="meter red"></div>
+                        </div>
+                    </div>
+                    <div class="small-7 large-2 columns">
+                        <h5>LED 6</h5>
+                        <div class="industrial led size two">
+                            <div class="meter green"></div>
+                        </div>
+                    </div>
+                </div>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+                <div class="row" data-intro="These are readouts. They can display any data as long as it casts to a string. They also may have variable digit lengths and colors!" data-step="5">
+                    <div class="small-12 large-6 columns">
+                        <h2>Readout 1</h2>
+                        <div id="read1" class="industrial readout size two">
+                            <div class="meter green" data-digits="4"></div>
+                        </div>
+                    </div>
+                    <div class="small-12 large-6 columns">
+                        <h2>Readout 2</h2>
+                        <div id="read2"class="industrial readout size two">
+                            <div class="meter white" data-digits="5"></div>
+                        </div>
+                    </div>
+                </div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+                <div class="row">
+                    <div class="small-4 large-4 small-centered large-centered content-centered columns" data-intro="Finally, we have a gauge. Isn't he cute?" data-position="top" data-step="6">
+                        <h2>Pressure (PSI)</h2>
+                        <div class="industrial gauge size two">
+                            <span class="ticks" data-amount="8" data-scale-freq="1"></span>
+                            <div class="space"></div>
+                            <div class="meter"></div>
+                        </div>
+                    </div>
+                </div>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+                <br />
+            </div>
+        </div>
 
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/Valdez42">Valdez42</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+        <div class="industrial preloader">&nbsp;</div>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="js/industrial.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/intro.min.js"></script>
+    </body>
 </html>
