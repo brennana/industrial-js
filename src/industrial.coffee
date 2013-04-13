@@ -166,7 +166,7 @@
     class ReadoutController extends StringController
         constructor: (element,options) ->
             super
-            @digit_amt = @options.digit_amt
+            @digit_amount = @options.digit_amount
             $meter = @$element.children(".meter")
             if $meter.length <= 0
                 return
@@ -174,8 +174,8 @@
 
             if $meter.children(".digit").length > 0
                 generateDigits = false
-            else if @digit_amt not in [undefined, 0, 1]
-                digitAmt = @digit_amt
+            else if @digit_amount not in [undefined, 0, 1]
+                digitAmt = @digit_amount
             else if $meter.data('digits') not in [undefined, 0, 1]
                 digitAmt = $meter.data('digits')
             else
