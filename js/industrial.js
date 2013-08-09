@@ -270,7 +270,7 @@ var __hasProp = {}.hasOwnProperty,
       _results = [];
       for (i = _i = 0, _ref = digits.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         if (this.value[i] === void 0) {
-          $(digits[i]).text(' ');
+          $(digits[i]).text('');
         }
         _results.push($(digits[i]).text(this.value[i]));
       }
