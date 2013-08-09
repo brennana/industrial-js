@@ -194,7 +194,7 @@
             digits = @$element.find(".meter > .digit")
             for i in [0...digits.length]
                 if @value[i] == undefined
-                    $(digits[i]).text(' ')
+                    $(digits[i]).text('')
                 $(digits[i]).text(@value[i])
 
     # Remove preloaders
