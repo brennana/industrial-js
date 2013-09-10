@@ -209,17 +209,17 @@
             data = $this.data("controller")
             options = $.extend({}, $.fn.industrial.defaults, typeof option is "object" and option)
             CtlClass = undefined
-            switch $this.attr("class").split(" ")[1]
-                when "tank", "thermometer"
-                    CtlClass = TankController
-                when "gauge"
-                    CtlClass = GaugeController
-                when "led"
-                    CtlClass = LEDController
-                when "readout"
-                    CtlClass = ReadoutController
-                else
-                    throw new TypeError("Industrial component class not recognized!")
+            $this.attr("class").split(" ").forEach (classname) ->
+                switch classname
+                    when "tank", "thermometer"
+                        CtlClass = TankController
+                    when "gauge"
+                        CtlClass = GaugeController
+                    when "led"
+                        CtlClass = LEDController
+                    when "readout"
+                        CtlClass = ReadoutController
+            throw new TypeError("Industrial component class not recognized!") if CtlClass is undefined
             $this.data "controller", (data = new CtlClass(this, options))  unless data
             data.setValue option  if typeof option is "number" or typeof option is "boolean" or typeof option is "string"
 
