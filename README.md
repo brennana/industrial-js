@@ -19,6 +19,9 @@ With optional sizing and color classes, tick marks, and scales, your industrial 
 
 [Also view the documentation.](https://github.com/valdez42/industrial-js/wiki)
 
+## Installation ##
+**Industrial.js** requires only two files, the `industrial.css` stylesheet, and the `industrial.js` javascript code. Both can be found in the [latest release](https://github.com/Valdez42/industrial-js/releases), which contains an example page, as well as example usage scripts.
+
 ## Contributing ##
 If you'd like to help make **Industrial.js** better (whether it be the default CSS or CoffeeScript source), then go right ahead! I encourage it. If you don't want to work on source, you can also help me by posting issues.
 
