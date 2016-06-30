@@ -15,12 +15,12 @@ If you answer yes to any of these, **Industrial.js** is for you! This library al
 
 With optional sizing and color classes, tick marks, and scales, your industrial application will come to life, allowing your users to gleam the same information, but with far more efficiency and style. Not to mention that this toolkit is MIT licensed (i.e. it's free!).
 
-[Go ahead, give the example a try!](http://valdez42.github.com/industrial-js)
+[Go ahead, give the example a try!](http://brennana.github.com/industrial-js)
 
-[Also view the documentation.](https://github.com/valdez42/industrial-js/wiki)
+[Also view the documentation.](https://github.com/brennana/industrial-js/wiki)
 
 ## Installation ##
-**Industrial.js** requires only two files, the `industrial.css` stylesheet, and the `industrial.js` javascript code. Both can be found in the [latest release](https://github.com/Valdez42/industrial-js/releases), which contains an example page, as well as example usage scripts.
+**Industrial.js** requires only two files, the `industrial.css` stylesheet, and the `industrial.js` javascript code. Both can be found in the [latest release](https://github.com/brennana/industrial-js/releases), which contains an example page, as well as example usage scripts.
 
 ## Contributing ##
 If you'd like to help make **Industrial.js** better (whether it be the default CSS or CoffeeScript source), then go right ahead! I encourage it. If you don't want to work on source, you can also help me by posting issues.
